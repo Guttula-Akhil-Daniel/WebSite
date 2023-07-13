@@ -1,0 +1,177 @@
+@font-face {
+    font-family: 'MemphisRiver';
+    src: url(SFPRODISPLAYREGULAR.OTF);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;   
+}
+.banner{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.50)), url(pexels-faik-akmd-1025469.jpg);
+    background-size: cover;
+    background-position: center;   
+}
+.navbar{
+    width: 85%;
+    margin: auto;
+    padding: 35px ;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.logo{
+    width: 120px;
+    cursor: pointer;
+}
+.heading ul h1 {
+    margin: -115 250px;
+}
+.heading ul h1 b{
+    font-family: "MemphisRiver" ,sans-serif;
+    color: white;
+    top: auto;
+}
+    
+.navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+.navbar ul li a{
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-family: "MemphisRiver" ,sans-serif;
+}
+.navbar ul li::after{
+    content: '';
+    height: 3px;
+    width: 0%;
+    background: #FF5F1F;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: 0.5s;
+}
+.navbar ul li:hover::after{
+    width: 100%;
+}
+.content{
+    width: 100%;
+    position: relative;
+    text-align: center;
+    top: 40%;
+    color: white;
+        
+}
+.content h1{
+    font-size: 70px;
+    margin-top: -10px;
+    font-family: "MemphisRiver", sans-serif;
+    color: none;
+    align-items: center;
+    position: relative;
+}
+        
+.content p{
+    margin: 20px;
+    font-weight: 100;
+    line-height: 0px;
+    
+}
+button{
+    width: 200px;
+    padding: 15 0px;
+    margin: 20px 10px;
+    border-radius: 5px;
+    text-align: center;
+    border: 2px solid #FF5F1F;
+    background: transparent;
+    color: whitesmoke;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    text-transform: uppercase;
+    font-family: "Memphis River", sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+
+}
+span{
+    background: #FF5F1F;
+    height: 0;
+    width: 100%;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s ;
+
+}
+button:hover span{
+    height: 100%;
+}
+button:hover{
+    border: none;
+}
+
+@media screen and (max-width:900px)
+{
+    .content h1{
+        font-size: 30px;
+        line-height: 30px;
+    }
+    
+    .heading ul h1 {
+    margin: -68 120px;
+    }
+    
+    .heading ul h1 b{
+        font-size: 10px;
+        
+        
+    }
+    .logo{
+    width: 50px;
+    cursor: pointer;
+    }
+    .navbar ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 0 2px;
+    position: relative;
+    }
+    .navbar ul li a{
+        font-size: 10px;
+        padding: 2px;
+    }
+    .banner{
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.50)), url(pexels-faik-akmd-1025469.jpg);
+    background-size:cover;
+    background-position: center; 
+    }
+    button{
+    width: 100px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid #FF5F1F;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    }
+}
