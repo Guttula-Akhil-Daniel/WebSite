@@ -1,36 +1,84 @@
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <link rel="stylesheet" href="style.css"> 
-
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhil Daniel - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
 <body>
-    <div class="banner">
-        <div class="navbar">
-            <img src="Logo.png.png" class="logo">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="https://flowwapp.netlify.app/">Projects</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
         </div>
-        <div class="heading">
-        <ul>
-        <h1><b href="#">Akhil Daniel</b></h1>
-        </ul>
-        </div>
-        
-        <div class="content">
-        <h1>COMING SOON!!</h1>
-        <p>Under Maintenance</p>
-        <div>
-        <button type="button" onclick="location.href='https://www.linkedin.com/in/akhildaniel/'"><span></span>LinkedIn</button>
-        <button type="button" onclick="location.href='https://github.com/Guttula-Akhil-Daniel'"><span></span>GitHub</button>
-        </div>
-        
     </div>
-    
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar glass-effect">
+            <div class="nav-content">
+                <div class="logo-container">
+                    <div class="logo-text">AD</div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link">Home</a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
+                    <li><a href="https://flowwapp.netlify.app/" class="nav-link">Projects</a></li>
+                    <li><a href="#" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <main class="hero">
+            <div class="hero-content">
+                <div class="name-container">
+                    <h1 class="hero-name">
+                        <span class="name-part">Akhil</span>
+                        <span class="name-part">Daniel</span>
+                    </h1>
+                </div>
+                
+                <div class="status-card glass-effect">
+                    <div class="status-indicator">
+                        <div class="pulse-dot"></div>
+                        <span>Coming Soon</span>
+                    </div>
+                    <p class="status-text">Under Maintenance</p>
+                </div>
+
+                <div class="cta-buttons">
+                    <button class="cta-btn primary-btn" onclick="location.href='https://www.linkedin.com/in/akhildaniel/'">
+                        <span class="btn-text">LinkedIn</span>
+                        <div class="btn-bg"></div>
+                    </button>
+                    <button class="cta-btn secondary-btn" onclick="location.href='https://github.com/Guttula-Akhil-Daniel'">
+                        <span class="btn-text">GitHub</span>
+                        <div class="btn-bg"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-line"></div>
+                <div class="scroll-text">Scroll</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
