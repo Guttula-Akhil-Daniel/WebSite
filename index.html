@@ -16,68 +16,167 @@
             <div class="shape shape-3"></div>
             <div class="shape shape-4"></div>
             <div class="shape shape-5"></div>
+            <div class="shape shape-6"></div>
         </div>
     </div>
 
-    <!-- Main Container -->
-    <div class="container">
-        <!-- Navigation -->
-        <nav class="navbar glass-effect">
-            <div class="nav-content">
-                <div class="logo-container">
-                    <div class="logo-text">AD</div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">Akhil Daniel</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="https://flowwapp.netlify.app/" class="nav-link" target="_blank">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="greeting">
+                        <span class="greeting-text">Hello, I'm</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">Akhil</span>
+                        <span class="title-line">Daniel</span>
+                    </h1>
+                    <div class="hero-subtitle">
+                        <span class="role">Full Stack Developer</span>
+                        <span class="separator">•</span>
+                        <span class="location">Building Digital Experiences</span>
+                    </div>
+                    
+                    <div class="status-banner">
+                        <div class="status-indicator">
+                            <div class="pulse-dot"></div>
+                            <span class="status-text">Currently Under Development</span>
+                        </div>
+                        <p class="status-description">Portfolio coming soon with exciting projects</p>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="https://www.linkedin.com/in/akhildaniel/" class="btn btn-primary" target="_blank">
+                            <span class="btn-icon">💼</span>
+                            <span class="btn-text">LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/Guttula-Akhil-Daniel" class="btn btn-secondary" target="_blank">
+                            <span class="btn-icon">🚀</span>
+                            <span class="btn-text">GitHub</span>
+                        </a>
+                        <a href="mailto:akhil@example.com" class="btn btn-outline">
+                            <span class="btn-icon">✉️</span>
+                            <span class="btn-text">Contact</span>
+                        </a>
+                    </div>
                 </div>
-                <ul class="nav-menu">
-                    <li><a href="#" class="nav-link">Home</a></li>
-                    <li><a href="#" class="nav-link">About</a></li>
-                    <li><a href="https://flowwapp.netlify.app/" class="nav-link">Projects</a></li>
-                    <li><a href="#" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+
+                <div class="hero-visual">
+                    <div class="profile-card glass-effect">
+                        <div class="profile-avatar">
+                            <div class="avatar-placeholder">AD</div>
+                            <div class="avatar-ring"></div>
+                        </div>
+                        <div class="profile-info">
+                            <h3>Akhil Daniel</h3>
+                            <p>Full Stack Developer</p>
+                            <div class="skills-preview">
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Python</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
 
-        <!-- Hero Section -->
-        <main class="hero">
-            <div class="hero-content">
-                <div class="name-container">
-                    <h1 class="hero-name">
-                        <span class="name-part">Akhil</span>
-                        <span class="name-part">Daniel</span>
-                    </h1>
+            <div class="scroll-indicator">
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+                <span class="scroll-text">Scroll to explore</span>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Passionate about creating innovative solutions</p>
                 </div>
                 
-                <div class="status-card glass-effect">
-                    <div class="status-indicator">
-                        <div class="pulse-dot"></div>
-                        <span>Coming Soon</span>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>I'm a dedicated full-stack developer with a passion for creating seamless digital experiences. Currently working on exciting projects that push the boundaries of web development.</p>
+                        <div class="stats-grid">
+                            <div class="stat-item glass-effect">
+                                <div class="stat-number">2+</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat-item glass-effect">
+                                <div class="stat-number">10+</div>
+                                <div class="stat-label">Projects Completed</div>
+                            </div>
+                            <div class="stat-item glass-effect">
+                                <div class="stat-number">5+</div>
+                                <div class="stat-label">Technologies</div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="status-text">Under Maintenance</p>
-                </div>
-
-                <div class="cta-buttons">
-                    <button class="cta-btn primary-btn" onclick="location.href='https://www.linkedin.com/in/akhildaniel/'">
-                        <span class="btn-text">LinkedIn</span>
-                        <div class="btn-bg"></div>
-                    </button>
-                    <button class="cta-btn secondary-btn" onclick="location.href='https://github.com/Guttula-Akhil-Daniel'">
-                        <span class="btn-text">GitHub</span>
-                        <div class="btn-bg"></div>
-                    </button>
                 </div>
             </div>
+        </section>
 
-            <!-- Scroll Indicator -->
-            <div class="scroll-indicator">
-                <div class="scroll-line"></div>
-                <div class="scroll-text">Scroll</div>
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p class="section-subtitle">Ready to collaborate on your next project</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-cards">
+                        <a href="https://www.linkedin.com/in/akhildaniel/" class="contact-card glass-effect" target="_blank">
+                            <div class="contact-icon">💼</div>
+                            <h3>LinkedIn</h3>
+                            <p>Professional network</p>
+                        </a>
+                        <a href="https://github.com/Guttula-Akhil-Daniel" class="contact-card glass-effect" target="_blank">
+                            <div class="contact-icon">🚀</div>
+                            <h3>GitHub</h3>
+                            <p>Code repositories</p>
+                        </a>
+                        <a href="mailto:akhil@example.com" class="contact-card glass-effect">
+                            <div class="contact-icon">✉️</div>
+                            <h3>Email</h3>
+                            <p>Direct contact</p>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Akhil Daniel. Crafted with passion.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
