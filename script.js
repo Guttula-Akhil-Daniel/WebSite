@@ -45,34 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Parallax effect for floating shapes
-    let mouseX = 0;
-    let mouseY = 0;
-    let isMouseMoving = false;
-    
-    document.addEventListener('mousemove', function(e) {
-        mouseX = (e.clientX / window.innerWidth) - 0.5;
-        mouseY = (e.clientY / window.innerHeight) - 0.5;
-        isMouseMoving = true;
-        
-        // Throttle the parallax effect
-        if (!isMouseMoving) return;
-        
-        requestAnimationFrame(() => {
-            const shapes = document.querySelectorAll('.shape');
-            shapes.forEach((shape, index) => {
-                const speed = (index + 1) * 0.3;
-                const x = mouseX * speed * 30;
-                const y = mouseY * speed * 30;
-                
-                shape.style.transform = `translate(${x}px, ${y}px)`;
-            });
-            isMouseMoving = false;
-        });
-    });
-
     // Enhanced button interactions with ripple effect
-    const buttons = document.querySelectorAll('.btn, .contact-card');
+    const buttons = document.querySelectorAll('.btn, .contact-card, .skill-card, .journey-item');
     
     function createRipple(event) {
         const button = event.currentTarget;
@@ -88,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
             height: ${size}px;
             left: ${x}px;
             top: ${y}px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 107, 53, 0.3);
             border-radius: 50%;
             transform: scale(0);
             animation: ripple-animation 0.6s linear;
@@ -125,15 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     buttons.forEach(button => {
         button.addEventListener('click', createRipple);
-        
-        // Enhanced hover effects
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-4px) scale(1.02)';
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
     });
 
     // Intersection Observer for scroll animations
@@ -149,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 entry.target.style.transform = 'translateY(0)';
                 
                 // Stagger animations for child elements
-                const children = entry.target.querySelectorAll('.stat-item, .contact-card, .skill-tag');
+                const children = entry.target.querySelectorAll('.journey-item, .contact-card, .skill-card');
                 children.forEach((child, index) => {
                     setTimeout(() => {
                         child.style.opacity = '1';
@@ -161,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe sections for animation
-    const animateElements = document.querySelectorAll('.about-section, .contact-section, .stat-item, .contact-card');
+    const animateElements = document.querySelectorAll('.about-section, .contact-section, .journey-item, .contact-card');
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -188,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (scrollTop > 50) {
             navbar.style.background = 'rgba(10, 10, 10, 0.95)';
         } else {
-            navbar.style.background = 'rgba(10, 10, 10, 0.8)';
+            navbar.style.background = 'rgba(10, 10, 10, 0.9)';
         }
         
         lastScrollTop = scrollTop;
@@ -240,28 +205,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 
-    // Particle cursor effect (optional enhancement)
-    let particles = [];
-    const particleCount = 5;
-    
-    function createParticle(x, y) {
-        return {
-            x: x,
-            y: y,
-            size: Math.random() * 3 + 1,
-            speedX: (Math.random() - 0.5) * 2,
-            speedY: (Math.random() - 0.5) * 2,
-            life: 1,
-            decay: Math.random() * 0.02 + 0.01
-        };
-    }
-    
-    document.addEventListener('mousemove', function(e) {
-        if (particles.length < particleCount) {
-            particles.push(createParticle(e.clientX, e.clientY));
-        }
-    });
-
     // Performance optimization: Reduce animations on low-end devices
     const isLowEndDevice = navigator.hardwareConcurrency <= 2 || 
                           navigator.deviceMemory <= 2 || 
@@ -278,15 +221,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 transition-duration: 0.3s !important;
             }
             
-            .reduced-motion .shape {
+            .reduced-motion .orb {
                 animation: none !important;
             }
             
             .reduced-motion .animated-bg {
-                animation: none !important;
-            }
-            
-            .reduced-motion .avatar-ring {
                 animation: none !important;
             }
         `;
@@ -315,77 +254,37 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Smooth reveal animations for stats
-    const statNumbers = document.querySelectorAll('.stat-number');
+    // Glow effect on hover for interactive elements
+    const glowElements = document.querySelectorAll('.skill-card, .journey-item, .contact-card, .profile-card');
     
-    function animateNumber(element, target, duration = 2000) {
-        const start = 0;
-        const increment = target / (duration / 16);
-        let current = start;
-        
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            element.textContent = Math.floor(current) + '+';
-        }, 16);
-    }
-    
-    // Trigger number animations when stats come into view
-    const statsObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const number = entry.target;
-                const target = parseInt(number.textContent);
-                animateNumber(number, target);
-                statsObserver.unobserve(number);
-            }
+    glowElements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.boxShadow = '0 0 30px rgba(255, 107, 53, 0.4), 0 8px 32px rgba(0, 0, 0, 0.4)';
         });
-    }, { threshold: 0.5 });
-    
-    statNumbers.forEach(stat => {
-        statsObserver.observe(stat);
-    });
-});
-
-// Add custom cursor effect
-document.addEventListener('DOMContentLoaded', function() {
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-    
-    const cursorStyle = document.createElement('style');
-    cursorStyle.textContent = `
-        .custom-cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(102, 126, 234, 0.5);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            mix-blend-mode: difference;
-        }
         
-        .custom-cursor.hover {
-            transform: scale(1.5);
-            border-color: rgba(102, 126, 234, 1);
-        }
-    `;
-    document.head.appendChild(cursorStyle);
+        element.addEventListener('mouseleave', function() {
+            this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.4)';
+        });
+    });
+
+    // Parallax effect for orbs (subtle)
+    let mouseX = 0;
+    let mouseY = 0;
     
     document.addEventListener('mousemove', function(e) {
-        cursor.style.left = e.clientX - 10 + 'px';
-        cursor.style.top = e.clientY - 10 + 'px';
-    });
-    
-    // Add hover effect to interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .btn, .contact-card');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        mouseX = (e.clientX / window.innerWidth) - 0.5;
+        mouseY = (e.clientY / window.innerHeight) - 0.5;
+        
+        // Throttle the parallax effect
+        requestAnimationFrame(() => {
+            const orbs = document.querySelectorAll('.orb');
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 0.1;
+                const x = mouseX * speed * 20;
+                const y = mouseY * speed * 20;
+                
+                orb.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
     });
 });
