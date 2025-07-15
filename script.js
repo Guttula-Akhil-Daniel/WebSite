@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
             height: ${size}px;
             left: ${x}px;
             top: ${y}px;
-            background: rgba(255, 107, 53, 0.3);
+            background: rgba(255, 107, 53, 0.2);
             border-radius: 50%;
             transform: scale(0);
             animation: ripple-animation 0.6s linear;
@@ -119,6 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => {
                         child.style.opacity = '1';
                         child.style.transform = 'translateY(0)';
+                        child.style.animationDelay = `${index * 0.1}s`;
+                        child.classList.add('animate-in');
                     }, index * 100);
                 });
             }
@@ -130,11 +132,11 @@ document.addEventListener('DOMContentLoaded', function() {
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
         observer.observe(el);
     });
 
-    // Navbar scroll effect
+    // Navbar scroll effect with smooth transitions
     let lastScrollTop = 0;
     const navbar = document.querySelector('.navbar');
     
@@ -151,9 +153,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add background blur when scrolled
         if (scrollTop > 50) {
-            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+            navbar.style.backdropFilter = 'blur(25px)';
         } else {
-            navbar.style.background = 'rgba(10, 10, 10, 0.9)';
+            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            navbar.style.backdropFilter = 'blur(20px)';
         }
         
         lastScrollTop = scrollTop;
@@ -181,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', updateActiveNav);
 
     // Typing animation for status text
-    function typeWriter(element, text, speed = 100) {
+    function typeWriter(element, text, speed = 80) {
         let i = 0;
         element.innerHTML = '';
         
@@ -201,14 +205,113 @@ document.addEventListener('DOMContentLoaded', function() {
     if (statusText) {
         const originalText = statusText.textContent;
         setTimeout(() => {
-            typeWriter(statusText, originalText, 80);
-        }, 1000);
+            typeWriter(statusText, originalText, 60);
+        }, 1500);
     }
+
+    // Skill progress bar animation
+    function animateProgressBars() {
+        const progressBars = document.querySelectorAll('.progress-bar');
+        progressBars.forEach((bar, index) => {
+            setTimeout(() => {
+                bar.style.width = '70%';
+            }, 1500 + (index * 200));
+        });
+    }
+
+    // Initialize progress bars
+    setTimeout(animateProgressBars, 1000);
+
+    // Enhanced card hover effects
+    const cards = document.querySelectorAll('.skill-card, .journey-item, .contact-card, .profile-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Parallax effect for floating shapes (subtle)
+    let ticking = false;
+    
+    function updateShapes() {
+        const shapes = document.querySelectorAll('.shape');
+        const scrolled = window.pageYOffset;
+        const parallax = scrolled * 0.5;
+        
+        shapes.forEach((shape, index) => {
+            const speed = (index + 1) * 0.1;
+            shape.style.transform = `translateY(${parallax * speed}px) rotate(${scrolled * 0.1}deg)`;
+        });
+        
+        ticking = false;
+    }
+    
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(updateShapes);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestTick);
+
+    // Loading animation sequence
+    window.addEventListener('load', function() {
+        document.body.classList.add('loaded');
+        
+        // Stagger animation for hero elements
+        const heroElements = document.querySelectorAll('.hero-content > *');
+        heroElements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.2}s`;
+        });
+        
+        // Initialize scroll position
+        updateActiveNav();
+        
+        // Add entrance animations
+        setTimeout(() => {
+            const elementsToAnimate = document.querySelectorAll('.skill-card, .profile-card');
+            elementsToAnimate.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }, 1000);
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navMenu && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+        
+        // Arrow key navigation for sections
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            const currentSection = document.querySelector('section.active') || sections[0];
+            const currentIndex = Array.from(sections).indexOf(currentSection);
+            
+            let nextIndex;
+            if (e.key === 'ArrowDown') {
+                nextIndex = Math.min(currentIndex + 1, sections.length - 1);
+            } else {
+                nextIndex = Math.max(currentIndex - 1, 0);
+            }
+            
+            sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
+        }
+    });
 
     // Performance optimization: Reduce animations on low-end devices
     const isLowEndDevice = navigator.hardwareConcurrency <= 2 || 
-                          navigator.deviceMemory <= 2 || 
-                          /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                          navigator.deviceMemory <= 2;
 
     if (isLowEndDevice) {
         document.body.classList.add('reduced-motion');
@@ -221,70 +324,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 transition-duration: 0.3s !important;
             }
             
-            .reduced-motion .orb {
+            .reduced-motion .shape {
                 animation: none !important;
             }
             
-            .reduced-motion .animated-bg {
+            .reduced-motion .bg-pattern {
                 animation: none !important;
             }
         `;
         document.head.appendChild(reducedMotionStyle);
     }
 
-    // Loading animation
-    window.addEventListener('load', function() {
-        document.body.classList.add('loaded');
-        
-        // Stagger animation for hero elements
-        const heroElements = document.querySelectorAll('.hero-content > *');
-        heroElements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.2}s`;
-        });
-        
-        // Initialize scroll position
-        updateActiveNav();
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            menuToggle.classList.remove('active');
-        }
-    });
-
-    // Glow effect on hover for interactive elements
-    const glowElements = document.querySelectorAll('.skill-card, .journey-item, .contact-card, .profile-card');
+    // Add smooth reveal animations for sections
+    const revealElements = document.querySelectorAll('.section-title, .section-subtitle');
     
-    glowElements.forEach(element => {
-        element.addEventListener('mouseenter', function() {
-            this.style.boxShadow = '0 0 30px rgba(255, 107, 53, 0.4), 0 8px 32px rgba(0, 0, 0, 0.4)';
+    const revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
         });
-        
-        element.addEventListener('mouseleave', function() {
-            this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.4)';
-        });
-    });
+    }, { threshold: 0.1 });
 
-    // Parallax effect for orbs (subtle)
-    let mouseX = 0;
-    let mouseY = 0;
-    
-    document.addEventListener('mousemove', function(e) {
-        mouseX = (e.clientX / window.innerWidth) - 0.5;
-        mouseY = (e.clientY / window.innerHeight) - 0.5;
-        
-        // Throttle the parallax effect
-        requestAnimationFrame(() => {
-            const orbs = document.querySelectorAll('.orb');
-            orbs.forEach((orb, index) => {
-                const speed = (index + 1) * 0.1;
-                const x = mouseX * speed * 20;
-                const y = mouseY * speed * 20;
-                
-                orb.style.transform = `translate(${x}px, ${y}px)`;
-            });
-        });
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        revealObserver.observe(el);
     });
 });
