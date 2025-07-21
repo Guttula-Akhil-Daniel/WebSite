@@ -1133,10 +1133,17 @@ body {
         padding: 20px;
     }
 
-    .avatar-placeholder {
-        width: 80px;
-        height: 80px;
-        font-size: 32px;
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .profile-name {
+        font-size: 24px;
+    }
+    
+    .profile-role {
+        font-size: 14px;
     }
 
     .hero-actions {
