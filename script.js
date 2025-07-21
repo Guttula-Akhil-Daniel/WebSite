@@ -1,4 +1,4 @@
-// Enhanced portfolio interactions and animations
+// Space-themed portfolio interactions and animations
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.nav-link');
@@ -203,9 +203,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize typing animation
     const statusText = document.querySelector('.status-text');
     if (statusText) {
-        const originalText = statusText.textContent;
+        const originalText = '🌟 Learning & Growing';
         setTimeout(() => {
-            typeWriter(statusText, originalText, 60);
+            typeWriter(statusText, originalText, 80);
         }, 1500);
     }
 
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) scale(1.02)';
+            this.style.transform = 'translateY(-6px) scale(1.02)';
         });
         
         card.addEventListener('mouseleave', function() {
@@ -235,17 +235,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Parallax effect for floating shapes (subtle)
+    // Parallax effect for floating rockets (subtle)
     let ticking = false;
     
-    function updateShapes() {
-        const shapes = document.querySelectorAll('.shape');
+    function updateRockets() {
+        const rockets = document.querySelectorAll('.rocket');
         const scrolled = window.pageYOffset;
         const parallax = scrolled * 0.5;
         
-        shapes.forEach((shape, index) => {
+        rockets.forEach((rocket, index) => {
             const speed = (index + 1) * 0.1;
-            shape.style.transform = `translateY(${parallax * speed}px) rotate(${scrolled * 0.1}deg)`;
+            rocket.style.transform = `translateY(${parallax * speed}px) rotate(${scrolled * 0.05}deg)`;
         });
         
         ticking = false;
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function requestTick() {
         if (!ticking) {
-            requestAnimationFrame(updateShapes);
+            requestAnimationFrame(updateRockets);
             ticking = true;
         }
     }
@@ -320,15 +320,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const reducedMotionStyle = document.createElement('style');
         reducedMotionStyle.textContent = `
             .reduced-motion * {
-                animation-duration: 0.3s !important;
-                transition-duration: 0.3s !important;
+                animation-duration: 0.2s !important;
+                transition-duration: 0.2s !important;
             }
             
-            .reduced-motion .shape {
+            .reduced-motion .rocket {
                 animation: none !important;
             }
             
-            .reduced-motion .bg-pattern {
+            .reduced-motion .stars {
+                animation: none !important;
+            }
+            
+            .reduced-motion .twinkling {
                 animation: none !important;
             }
         `;
@@ -353,4 +357,72 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         revealObserver.observe(el);
     });
+
+    // Enhanced scroll to explore click handler
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function() {
+            const aboutSection = document.querySelector('#about');
+            if (aboutSection) {
+                aboutSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+
+    // Add cosmic particle effect on mouse move (subtle)
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        // Create subtle particle trail
+        if (Math.random() > 0.95) {
+            createCosmicParticle(mouseX, mouseY);
+        }
+    });
+    
+    function createCosmicParticle(x, y) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: rgba(139, 92, 246, 0.6);
+            border-radius: 50%;
+            left: ${x}px;
+            top: ${y}px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: particleFade 1s ease-out forwards;
+        `;
+        
+        document.body.appendChild(particle);
+        
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
+            }
+        }, 1000);
+    }
+    
+    // Add particle animation styles
+    const particleStyle = document.createElement('style');
+    particleStyle.textContent = `
+        @keyframes particleFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) translateY(-20px);
+            }
+        }
+    `;
+    document.head.appendChild(particleStyle);
 });
