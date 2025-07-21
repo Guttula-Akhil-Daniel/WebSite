@@ -498,9 +498,10 @@ body {
 }
 
 .skill-card:hover {
-    transform: translateY(-8px) rotateY(5deg);
+    transform: translateY(-6px);
     border-color: var(--primary-purple);
-    box-shadow: var(--shadow-card), 0 0 20px rgba(139, 92, 246, 0.3);
+    box-shadow: var(--shadow-card), 0 0 25px rgba(139, 92, 246, 0.4);
+    filter: brightness(1.05);
 }
 
 
@@ -511,7 +512,8 @@ body {
 }
 
 .skill-card:hover .skill-icon {
-    transform: scale(1.2) rotate(360deg);
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
 }
 
 .skill-name {
@@ -612,12 +614,12 @@ body {
 }
 
 .btn:hover {
-    transform: translateY(-4px) scale(1.05);
-    filter: brightness(1.1);
+    transform: translateY(-3px);
+    filter: brightness(1.08);
 }
 
 .btn-primary:hover {
-    box-shadow: var(--medium-glow);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5), 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .btn-secondary:hover {
@@ -628,7 +630,7 @@ body {
 .btn-outline:hover {
     background: var(--primary-purple);
     color: white;
-    box-shadow: var(--subtle-glow);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Hero Visual */
@@ -663,9 +665,10 @@ body {
 }
 
 .profile-card:hover {
-    transform: translateY(-10px) rotateX(5deg);
+    transform: translateY(-8px);
     border-color: var(--primary-purple);
-    box-shadow: var(--shadow-card), 0 0 30px rgba(139, 92, 246, 0.4);
+    box-shadow: var(--shadow-card), 0 0 35px rgba(139, 92, 246, 0.5);
+    filter: brightness(1.05);
 }
 
 .profile-photo {
@@ -675,18 +678,20 @@ body {
 }
 
 .profile-image {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--primary-purple);
     position: relative;
     z-index: 2;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .profile-card:hover .profile-image {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.3);
+    filter: brightness(1.1);
 }
 
 .photo-ring {
@@ -907,23 +912,24 @@ body {
 }
 
 .journey-item:hover {
-    transform: translateY(-8px) scale(1.02);
-    filter: brightness(1.05);
+    transform: translateY(-6px);
+    filter: brightness(1.08);
+    box-shadow: var(--shadow-card), 0 0 20px rgba(139, 92, 246, 0.3);
 }
 
 .journey-item.focus:hover {
     border-color: var(--primary-blue);
-    box-shadow: var(--shadow-card), 0 0 15px rgba(59, 130, 246, 0.2);
+    box-shadow: var(--shadow-card), 0 0 20px rgba(59, 130, 246, 0.4);
 }
 
 .journey-item.goals:hover {
     border-color: var(--primary-green);
-    box-shadow: var(--shadow-card), 0 0 15px rgba(16, 185, 129, 0.2);
+    box-shadow: var(--shadow-card), 0 0 20px rgba(16, 185, 129, 0.4);
 }
 
 .journey-item.passion:hover {
     border-color: var(--primary-orange);
-    box-shadow: var(--shadow-card), 0 0 15px rgba(245, 158, 11, 0.2);
+    box-shadow: var(--shadow-card), 0 0 20px rgba(245, 158, 11, 0.4);
 }
 
 .journey-icon {
@@ -933,7 +939,8 @@ body {
 }
 
 .journey-item:hover .journey-icon {
-    transform: scale(1.2) rotate(360deg);
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5));
 }
 
 .journey-item h4 {
@@ -993,23 +1000,23 @@ body {
 }
 
 .contact-card:hover {
-    transform: translateY(-10px) rotateY(5deg);
-    filter: brightness(1.1);
+    transform: translateY(-6px);
+    filter: brightness(1.08);
 }
 
 .contact-card.linkedin:hover {
     border-color: var(--primary-blue);
-    box-shadow: var(--shadow-card), 0 0 15px rgba(59, 130, 246, 0.2);
+    box-shadow: var(--shadow-card), 0 0 25px rgba(59, 130, 246, 0.4);
 }
 
 .contact-card.github:hover {
     border-color: var(--text-primary);
-    box-shadow: var(--shadow-card), 0 0 15px rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-card), 0 0 25px rgba(255, 255, 255, 0.2);
 }
 
 .contact-card.email:hover {
     border-color: var(--primary-red);
-    box-shadow: var(--shadow-card), 0 0 15px rgba(239, 68, 68, 0.2);
+    box-shadow: var(--shadow-card), 0 0 25px rgba(239, 68, 68, 0.4);
 }
 
 .contact-icon {
@@ -1019,7 +1026,8 @@ body {
 }
 
 .contact-card:hover .contact-icon {
-    transform: scale(1.2) rotate(360deg);
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
 }
 
 .contact-card h3 {
