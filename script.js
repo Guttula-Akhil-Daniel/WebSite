@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize typing animation
     const statusText = document.querySelector('.status-text');
     if (statusText) {
-        const originalText = '🌟 Learning & Growing';
+        const originalText = '🧠 Learning AI & ML';
         setTimeout(() => {
             typeWriter(statusText, originalText, 80);
         }, 1500);
